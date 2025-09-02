@@ -1,0 +1,43 @@
+{
+  "name": "plumber-ai-agent",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,web -c blue,green \"npm run dev -w server\" \"npm run dev -w web\"",
+    "build": "npm run build -w server && npm run build -w web",
+    "lint": "eslint \"server/src/**/*.{ts,tsx}\" \"web/src/**/*.{ts,tsx}\"",
+    "test": "vitest --run"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "concurrently": "^9.0.1",
+    "eslint": "^9.9.0",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "env": {
+      "es2022": true,
+      "node": true,
+      "browser": true
+    },
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    }
+  }
+}
